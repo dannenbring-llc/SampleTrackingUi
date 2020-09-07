@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using SampleTrackingUi.ApiModels.Samples;
 using SampleTrackingUi.Models.Scans;
 
 namespace SampleTrackingUi.Controllers
@@ -106,5 +107,19 @@ namespace SampleTrackingUi.Controllers
             }
             return View(vm);
         }
+
+        [HttpGet]
+        [Route("StaleSamples")]
+        public async Task<IActionResult> PatientLookup(string kbNumber)
+        {
+            var vm = new PatientLookupViewModel();
+
+            if (kbNumber != null)
+            {
+                vm.Sample = _mapper.Map<SampleApi>(await _igtSamplesApi.GetSampleAsync(kbNumber));
+            }
+            return View(vm);
+        }
+
     }
 }

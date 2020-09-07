@@ -28,7 +28,7 @@ namespace SampleTrackingUi.Validators.Administration
         private async Task<bool> IsUniqueEmail(string emailAddress, CancellationToken cancellationToken)
         {
             var users = await _sampleTrackingApi.GetUsersAsync();
-            return !users.Any(e => e.Email == emailAddress);
+            return users.All(e => e.Email != emailAddress);
         }
     }
 }
