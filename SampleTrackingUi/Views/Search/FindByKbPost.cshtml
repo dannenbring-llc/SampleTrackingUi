@@ -1,0 +1,344 @@
+﻿@using  SampleTrackingUi.ViewModels.SearchViewModels;
+@model FindByKbViewModel;
+
+<form class="form-inline">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(m => Model.LogDate, "Tray ID:", new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.LogDate, new { id = "logDate", type = "datetime", @class = "form-control input-sm"})
+            </div>
+            <div class="form-group" style="margin-left: 10px">
+                @Html.LabelFor(m => Model.KbNumber, "KB:", new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.KbNumber, new { id = "kbNumber", type = "text", @class = "form-control input-sm", autofocus=""})
+            </div>
+            <div class="form-group" style="margin-left: 10px">
+                @Html.LabelFor(m => Model.PatientName, "Patient Name:", new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.PatientName, new { id = "patientName", type = "text", @class = "form-control input-sm"})
+            </div>
+            <div class="form-group" style="margin-left: 10px">
+                @Html.LabelFor(m => Model.LogDate, "Log Date:", new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.LogDate, new { id = "logDate", type = "datetime", @class = "form-control input-sm"})
+            </div>
+            <div class="form-group" style="margin-left: 10px">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapseRelocatedAliquots"><b>Tray</b>: G900006357 &nbsp;&nbsp;&nbsp;&nbsp; <b>Sample</b>: KB1901018</a>
+                </h4>
+            </div>
+            <div id="collapseRelocatedAliquots" class="panel-collapse collapse in">
+                <div class="panel-body text-center">
+                    <table class="table table-bordered table-hover table-striped table-condensed text-center" id="myTable">
+                        <thead>
+                            <tr class="small">
+                                <th class="text-center">Column</th>
+                                <th class="text-center">1</th>
+                                <th class="text-center">2</th>
+                                <th class="text-center">3</th>
+                                <th class="text-center">4</th>
+                                <th class="text-center">5</th>
+                                <th class="text-center">6</th>
+                                <th class="text-center">7</th>
+                                <th class="text-center">8</th>
+                                <th class="text-center">9</th>
+                                <th class="text-center">10</th>
+                                <th class="text-center">11</th>
+                                <th class="text-center">12</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="text-center">
+                            <tr class="small">
+                                <td class="text-center">A</td>
+                                <td class="text-center">G800608528</td>
+                                <td class="text-center">G800608529</td>
+                                <td class="text-center">G800608530</td>
+                                <td style="background-color:Green" class="text-center">G800608531</td>
+                                <td style="background-color:Green" class="text-center">G800608532</td>
+                                <td style="background-color:Green" class="text-center">G800608533</td>
+                                <td style="background-color:Green" class="text-center">G800608534</td>
+                                <td class="text-center">G800608535</td>
+                                <td class="text-center">G800608536</td>
+                                <td class="text-center">G800608537</td>
+                                <td class="text-center">G800608538</td>
+                                <td class="text-center">G800608539</td>
+                            </tr>
+                            <tr class="small">
+                                <td class="text-center">B</td>
+                                <td class="text-center">G800608640</td>
+                                <td class="text-center">G800608629</td>
+                                <td class="text-center">G800608630</td>
+                                <td class="text-center">G800608631</td>
+                                <td class="text-center">G800608632</td>
+                                <td class="text-center">G800608633</td>
+                                <td class="text-center">G800608634</td>
+                                <td class="text-center">G800608635</td>
+                                <td class="text-center">G800608636</td>
+                                <td class="text-center">G800608637</td>
+                                <td class="text-center">G800608638</td>
+                                <td class="text-center">G800608639</td>
+                            </tr>
+                            <tr class="small">
+                                <td class="text-center">C</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+                            <tr class="small">
+                                <td class="text-center">D</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+                            <tr class="small">
+                                <td class="text-center">E</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+                            <tr class="small">
+                                <td class="text-center">F</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+                            <tr class="small">
+                                <td class="text-center">G</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+                            <tr class="small">
+                                <td class="text-center">H</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapseRelocatedAliquots"><b>Tray</b>: G900006356 &nbsp;&nbsp;&nbsp;&nbsp; <b>Sample:</b> KB1901018</a>
+                </h4>
+            </div>
+            <div id="collapseRelocatedAliquots" class="panel-collapse collapse in">
+                <div class="panel-body text-center">
+                    <table class="table table-bordered table-hover table-striped table-condensed text-center" id="myTable">
+                        <thead>
+                            <tr class="small">
+                                <th class="text-center">Column</th>
+                                <th class="text-center">1</th>
+                                <th class="text-center">2</th>
+                                <th class="text-center">3</th>
+                                <th class="text-center">4</th>
+                                <th class="text-center">5</th>
+                                <th class="text-center">6</th>
+                                <th class="text-center">7</th>
+                                <th class="text-center">8</th>
+                                <th class="text-center">9</th>
+                                <th class="text-center">10</th>
+                                <th class="text-center">11</th>
+                                <th class="text-center">12</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="text-center">
+                            <tr class="small">
+                                <td class="text-center">A</td>
+                                <td class="text-center">G800608600</td>
+                                <td class="text-center">G800608601</td>
+                                <td class="text-center">G800608602</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center">G800608603</td>
+                                <td class="text-center">G800608604</td>
+                                <td class="text-center">G800608605</td>
+                                <td class="text-center">G800608606</td>
+                            </tr>
+                            <tr class="small">
+                                <td class="text-center">B</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+                            <tr class="small">
+                                <td class="text-center">C</td>
+                                <td class="text-center">G800608610</td>
+                                <td class="text-center">G800608611</td>
+                                <td class="text-center">G800608603</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+                            <tr class="small">
+                                <td class="text-center">D</td>
+                                <td class="text-center"></td>
+                                <td class="text-center">G800608700</td>
+                                <td class="text-center">G800608701</td>
+                                <td class="text-center">G800608703</td>
+                                <td class="text-center">G800608704</td>
+                                <td class="text-center">G800608705</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+                            <tr class="small">
+                                <td class="text-center">E</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center">G800608800</td>
+                                <td class="text-center">G800608801</td>
+                                <td class="text-center">G800608802</td>
+                            </tr>
+                            <tr class="small">
+                                <td class="text-center">F</td>
+                                <td class="text-center">G800608803</td>
+                                <td class="text-center">G800608804</td>
+                                <td class="text-center">G800608805</td>
+                                <td class="text-center">G800608806</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+                            <tr class="small">
+                                <td class="text-center">G</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+                            <tr class="small">
+                                <td class="text-center">H</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td style="background-color:Green" class="text-center">G800608900</td>
+                                <td style="background-color:Green" class="text-center">G800608901</td>
+                                <td style="background-color:Green" class="text-center">G800608902</td>
+                                <td style="background-color:Green" class="text-center">G800608903</td>
+                                <td style="background-color:Green" class="text-center">G800608904</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

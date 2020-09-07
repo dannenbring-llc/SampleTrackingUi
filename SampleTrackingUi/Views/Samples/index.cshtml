@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "index";
+}
+
+<h2>Add Sample</h2>
+<ol class="breadcrumb">
+    <li>Home</li>
+    <li>Library</li>
+    <li class="active">Data</li>
+</ol>
+
+<form class="form-inline">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Select Sample</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="kbNumber">KB:</label>
+                <input type="text" class="form-control" id="kbNumber" placeholder="KB1912345">
+            </div>
+            <div class="form-group">
+                <label for="patientName">Patient Name:</label>
+                <input type="email" class="form-control" id="patient" placeholder="Doe, Jane" readonly>
+            </div>
+            <div class="form-group">
+                <label for="logDate">Log Date/Time:</label>
+                <input type="datetime" class="form-control" id="logDateTime" placeholder="12/1/2019 12:00 AM" readonly>
+            </div>
+            <button type="button" class="btn btn-success">Refresh</button>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Select Sample</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="subType">Sub Type:</label>
+                <select class="form-control">
+                    <option>Serum</option>
+                    <option>DNA</option>
+                    <option>...</option>
+                    <option>...</option>
+                    <option>...</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Assign Aliqout</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="form-group; center-block" style="width:100%">
+                    <a href="" class="glyphicon-minus" style="color:red; font-size:x-large"></a>
+                    <label for="patientName">Aliqout ID:</label>
+                    <input type="email" class="form-control" id="patient" placeholder="123456789">
+                </div>
+                <div class="form-group" style="width:100%">
+                    <a href="" class="glyphicon-minus" style="color:red; font-size:x-large"></a>
+                    <label for="patientName">Aliqout ID:</label>
+                    <input type="email" class="form-control" id="patient" placeholder="123456789">
+                </div>
+                <div class="form-group" style="width:100%">
+                    <a href="" class="glyphicon-minus" style="color:red; font-size:x-large"></a>
+                    <label for="patientName">Aliqout ID:</label>
+                    <input type="email" class="form-control" id="patient" placeholder="123456789">
+                </div>
+                <div class="form-group" style="width:100%">
+                    <a href="" class="glyphicon-minus" style="color:red; font-size:x-large"></a>
+                    <label for="patientName">Aliqout ID:</label>
+                    <input type="email" class="form-control" id="patient" placeholder="123456789">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

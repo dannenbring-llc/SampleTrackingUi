@@ -1,0 +1,30 @@
+﻿@using  SampleTrackingUi.ViewModels.HomeViewModels;
+@model HomeViewModel;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@await Html.PartialAsync("_SessionPartial", Model)
+<br/>
+<div class="row">
+    <div style="border-top: 15px; border-right: 15px">
+        @foreach (var freezer in Model.Freezers)
+        {
+        <div class="col-lg-3">
+            @if (freezer.PercentFull < 50)
+            {
+                <a href="~/Storage/Drawers/@freezer.Id" class="btn btn-success btn-lg text-center" style="width: 100%" role="button">@freezer.Description <br /> @Decimal.Round(Convert.ToDecimal(freezer.PercentFull), 2)%</a>
+            }
+            else if (freezer.PercentFull >= 50 && freezer.PercentFree < 75)
+            {
+                <a href="~/Storage/Drawers/@freezer.Id" class="btn btn-warning btn-lg text-center" style="width: 100%" role="button">@freezer.Description <br /> @Decimal.Round(Convert.ToDecimal(freezer.PercentFull), 2)%</a>
+            }
+            else
+            {
+                <a href="~/Storage/Drawers/@freezer.Id" class="btn btn-danger btn-lg text-center" style="width: 100%" role="button">@freezer.Description <br /> @Decimal.Round(Convert.ToDecimal(freezer.PercentFull), 2)%</a>
+            }
+        </div>
+        }
+    </div>
+</div>

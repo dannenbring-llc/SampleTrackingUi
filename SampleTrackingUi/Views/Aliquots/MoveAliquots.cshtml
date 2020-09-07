@@ -1,0 +1,56 @@
+﻿@using  SampleTrackingUi.ViewModels.Aliquots;
+@model MoveAliquotsViewModel;
+
+@{
+	ViewData["Title"] = "Move Aliquots";
+}
+
+@await Html.PartialAsync("_SessionPartial", Model)
+
+
+<h2>Move Aliquots</h2>
+
+<ol class="breadcrumb">
+	<li class="active"><a>Select Tray</a></li>
+	<li>Select Sample</li>
+	<li>Select Sub Type</li>
+	<li>Assign Aliquots</li>
+	<li>Validate</li>
+</ol>
+
+<form class="form-inline">
+	@{
+		if (Model.Session.SessionId == 0)
+		{
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Scan Destination Tray</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<label class="control-label">Tray: </label>
+						@Html.TextBoxFor(m => m.Tray.Description, new { id = "trayName", type = "text", @class = "form-control input-sm", autofocus="" })
+						<button type="submit" name="CheckTray" value="CheckTray" class="btn btn-primary">Scan Tray</button>
+						@if (Model.ErrorMessage != null)
+						{
+
+						<label style="color: red">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							@Model.ErrorMessage
+						</label>
+						}
+
+					</div>
+				</div>
+			</div>
+		}
+		else
+		{
+			<div class="alert alert-warning" role="alert" style="margin-top: 7px">
+				You already have an open session.<br />
+				To move aliquots you must first @Html.ActionLink("close", "index", "Scans") your open session.
+			</div>
+
+		}
+	}
+</form>

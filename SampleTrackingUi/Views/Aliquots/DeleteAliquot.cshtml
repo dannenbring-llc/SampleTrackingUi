@@ -1,0 +1,47 @@
+﻿@model SampleTrackingUi.ViewModels.Aliquots.DeleteAliquotViewModel;
+
+@{
+	ViewData["Title"] = "Delete Aliquot";
+
+
+	if (Model.Session != null && Model.Session.SessionId != 0)
+	{
+		<div class="alert alert-info" role="alert" style="margin-top: 7px">
+			Session @Model.Session.SessionId open.
+			&nbsp; @Html.ActionLink("Scan", "DeleteAliquots", "Scans")
+		</div>
+	}
+}
+
+
+<h2>Delete Aliquot</h2>
+
+<ol class="breadcrumb">
+	<li class="active">
+		<a>Select Tray</a>
+	</li>
+	<li>Scan Tray</li>
+	<li>Delete Aliquots</li>
+</ol>
+
+<form class="form-inline" method="get">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Assign Aliquot</h3>
+		</div>
+		<div class="panel-body">
+			<div class="form-group">
+				@{
+					for (var i = 0; i < 20; i++)
+					{
+					<div class="form-group; center-block" style="margin-top: 2px; width: 100%;">
+						<label>Aliquot ID:</label>
+						@Html.TextBoxFor(m => m.AliquotsDelete[i], new {type = "text", @class = "form-control input-sm"})
+					</div>
+					}
+				}
+			</div>
+		</div>
+	</div>
+	<button type="submit" class="btn btn-success" name="DeleteAliquot" value="true">Delete</button>
+</form>

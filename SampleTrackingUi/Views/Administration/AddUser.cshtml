@@ -1,0 +1,90 @@
+﻿@using SampleTrackingUi.ViewModels.Administration;
+@model AddUserViewModel
+<style type="text/css">
+
+    div.content {
+        margin: 3px auto;
+        padding: 10px;
+        border: solid 1px #CCCCCC;
+        background-color: #EFEFEF;
+    }
+
+        div.content > div.form-group {
+            padding: 4px 5px;
+            display: block;
+        }
+
+        div.content label.control-label {
+            width: 120px;
+            text-align: left;
+        }
+
+        div.content input[type="text"] {
+            width: 175px;
+        }
+
+        div.content select {
+            width: 180px;
+        }
+</style>
+
+<form id="formMain" method="post" class="form-horizontal">
+    <div>
+        <div class="page-header">
+            <h1>Add Employee</h1>
+        </div>
+        <div class="content panel panel-default" style="width: 400px;">
+            <div class="panel-body">
+                <div class="form-group validation-message">
+                    <label class="col-sm-2 control-label"></label>
+                </div>
+                <div class="form-group">
+                    <div class="text-danger">
+                        @{
+                            if (Model.ErrorList.Count > 0)
+                            {
+                                foreach (var error in Model.ErrorList)
+                                {
+                                    <ul>
+                                        <li>@error</li>
+                                    </ul>
+                                }
+                            }
+                        }
+                    </div>
+
+                    <div class="form-group">
+                        <label for="FirstName" class="col-sm-5 control-label">Name:</label>
+                        @Html.TextBoxFor(m => m.User.Name, new { style = "width:250px", @class = "form-control input-sm input-text upper-case" })
+                    </div>
+                    <div class="form-group">
+                        <label for="LastName" class="col-sm-5 control-label">Email:</label>
+                        @Html.TextBoxFor(m => m.User.Email, new { style = "width:250px", @class = "form-control input-sm input-text upper-case" })
+                    </div>
+                    <div class="form-group">
+                        <label for="Password" class="col-sm-5 control-label">Password:</label>
+                        @Html.TextBoxFor(m => m.User.PasswordHash, new { style = "width:250px", type = "password", @class = "form-control input-sm input-text upper-case" })
+                    </div>
+                    <div class="form-group">
+                        <label for="Role" class="col-sm-5 control-label">Role:</label>
+                        @Html.DropDownListFor(m => m.User.RoleId,
+                                              new SelectList(Model.ApplicationRoles, "Id", "Name"),
+                                              "--All--",
+                                              htmlAttributes: new
+                                                   {
+                                                       @class = "col-sm-2 form-control input-sm location"
+                                              })
+                    </div>
+                    <div class="form-group">
+                        <label for="Status" class="col-sm-5 control-label">Status:</label>
+                        @Html.TextBoxFor(m => m.User.Status, new { style = "width:250px", @class = "form-control input-sm input-text upper-case" })
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 3px; text-align: right">
+                <button type="submit" name="Add" value="True" class="btn btn-default btn-primary btn-sm">Save</button>
+                <button type="button" class="btn btn-default btn-sm" onclick="javascript:window.location='@Url.Action("Users", "Administration")'">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>

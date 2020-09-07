@@ -1,0 +1,70 @@
+﻿@using SampleTrackingUi.ViewModels.Administration;
+
+@model UsersViewModel;
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<form id="formMain" method="get">
+    <div>
+        <div class="page-header">
+            <h1>@Model.PageTitle</h1>
+        </div>
+        <a href="@Url.Action("AddUser", "Administration")" class="btn btn-success">
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            Add Employee
+        </a>
+        <div class="form-inline clearfix">
+            <div style="margin-top: 3px;">
+                <table class="data table table-bordered table-hover table-striped" id="myTable">
+                    <thead>
+                        <tr class="small">
+                            <th>&nbsp;</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int rowIndex = 0;
+
+                            foreach (var item in Model.Users)
+                            {
+                                <tr class="data-row small">
+                                    <td width="5%" style="text-align:center; width:5%">
+                                        <div style="width: 100px;">
+                                            <a class="glyphicon glyphicon-edit"
+                                               title="Edit"
+                                               style="margin-right:12px"
+                                               href="@Url.Action("EditEmployee", "Administration", new {item.Id})"></a>
+                                            <a href="@Url.Action("DeleteUser", "Administration", new {item.Id})"
+                                               class="glyphicon glyphicon-remove"
+                                               style="margin-right:12px"
+                                               onclick="return confirm('Are you sure you want to delete the Employee?')"
+                                               title="Delete"
+                                               data-delete="1"></a>
+                                        </div>
+                                    </td>
+                                    <td>@item.Id</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Status</td>
+                                </tr>
+
+                                rowIndex++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div>
+        <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
+    </div>
+</form>
+
+

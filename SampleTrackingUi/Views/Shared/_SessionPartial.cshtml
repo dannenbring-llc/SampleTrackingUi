@@ -1,0 +1,22 @@
+﻿@*
+	For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@if (Model.Session != null && Model.Session.SessionId != 0)
+{
+	@if (Model.Session.SessionTypeId == 1)
+	{
+		<div class="alert alert-info" role="alert" style="margin-top:7px">
+			Session @Model.Session.SessionId open.
+			&nbsp; @Html.ActionLink("Scan", "index", "Scans")
+		</div>
+	}
+	else
+	{
+		<div class="alert alert-info" role="alert" style="margin-top:7px">
+			Session @Model.Session.SessionId open.
+			&nbsp; @Html.ActionLink("Scan", "DeleteAliquots", "Scans")
+		</div>
+	}
+}
+

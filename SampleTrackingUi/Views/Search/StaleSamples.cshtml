@@ -1,0 +1,265 @@
+﻿@using  SampleTrackingUi.ViewModels.SearchViewModels;
+@model FindByKbViewModel;
+
+<form class="form-inline">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group" style=" margin-left: 10px">
+                @Html.LabelFor(m => Model.LogDate, "Log Date:", new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.LogDate, DateTime.Now.AddMonths(-6).ToString("yyyy-MM-dd"),  new { type = "date", @class = "form-control input-sm" })
+            </div>
+            <div class="form-group" style=" margin-left: 10px">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-inline clearfix">
+        <div style="margin-top: 3px;">
+
+            @if (Model.SearchResults != null)
+            {
+                foreach (var trayResult in Model.SearchResults)
+                {
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <ol class="breadcrumb">
+                                    <li>
+                                        <b>
+                                            <label class="control-label">Freezer:</label>
+                                            @*                                            @Html.TextBoxFor(m => m.ScanData.ScanDetails.First(), new { id = "trayName", type = "text", @class = "form-control input-sm" })*@
+                                            @trayResult.FreezerId.ToString()
+                                        </b>
+                                    </li>
+                                    <li><b>Drawer: @trayResult.DrawerDescription</b></li>
+                                    <li><b>Drawer Slot: @trayResult.DrawerSlot</b></li>
+                                    <li><b>Tray: @trayResult.TrayDescription</b></li>
+                                </ol>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <table class="table table-bordered table-hover table-striped text-center">
+                                        <thead class="text-center">
+                                            <tr class="small text-center">
+                                                <th class="text-center">Row</th>
+                                                <th class="text-center">1</th>
+                                                <th class="text-center">2</th>
+                                                <th class="text-center">3</th>
+                                                <th class="text-center">4</th>
+                                                <th class="text-center">5</th>
+                                                <th class="text-center">6</th>
+                                                <th class="text-center">7</th>
+                                                <th class="text-center">8</th>
+                                                <th class="text-center">9</th>
+                                                <th class="text-center">10</th>
+                                                <th class="text-center">11</th>
+                                                <th class="text-center">12</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @foreach (var item in trayResult.Trays)
+                                            {
+                                                <tr class="small text-center">
+                                                    <td>@item.RowName</td>
+                                                    @if (item.TrayColumn1.FindSampleId)
+                                                    {
+                                                        <td class="alert-success">
+                                                            @item.TrayColumn1.Sample 
+                                                            <br /> @item.TrayColumn1.Aliquot 
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@item.TrayColumn1.Sample <br /> @item.TrayColumn1.Aliquot</td>
+                                                    }
+
+                                                    @if (item.TrayColumn2.FindSampleId)
+                                                    {
+                                                        <td class="alert-success">@item.TrayColumn2.Sample <br /> @item.TrayColumn2.Aliquot</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@item.TrayColumn2.Sample <br /> @item.TrayColumn2.Aliquot</td>
+                                                    }
+
+                                                    @if (item.TrayColumn3.FindSampleId)
+                                                    {
+                                                        <td class="alert-success">@item.TrayColumn3.Sample <br /> @item.TrayColumn3.Aliquot</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@item.TrayColumn3.Sample <br /> @item.TrayColumn3.Aliquot</td>
+                                                    }
+
+                                                    @if (item.TrayColumn4.FindSampleId)
+                                                    {
+                                                        <td class="alert-success">@item.TrayColumn4.Sample <br /> @item.TrayColumn4.Aliquot</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@item.TrayColumn4.Sample <br /> @item.TrayColumn4.Aliquot</td>
+                                                    }
+
+                                                    @if (item.TrayColumn5.FindSampleId)
+                                                    {
+                                                        <td class="alert-success">@item.TrayColumn5.Sample <br /> @item.TrayColumn5.Aliquot</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@item.TrayColumn5.Sample <br /> @item.TrayColumn5.Aliquot</td>
+                                                    }
+
+                                                    @if (item.TrayColumn6.FindSampleId)
+                                                    {
+                                                        <td class="alert-success">@item.TrayColumn6.Sample <br /> @item.TrayColumn6.Aliquot</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@item.TrayColumn6.Sample <br /> @item.TrayColumn6.Aliquot</td>
+                                                    }
+
+                                                    @if (item.TrayColumn7.FindSampleId)
+                                                    {
+                                                        <td class="alert-success">@item.TrayColumn7.Sample <br /> @item.TrayColumn7.Aliquot</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@item.TrayColumn7.Sample <br /> @item.TrayColumn7.Aliquot</td>
+                                                    }
+
+                                                    @if (item.TrayColumn8.FindSampleId)
+                                                    {
+                                                        <td class="alert-success">@item.TrayColumn8.Sample <br /> @item.TrayColumn8.Aliquot</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@item.TrayColumn8.Sample <br /> @item.TrayColumn8.Aliquot</td>
+                                                    }
+
+                                                    @if (item.TrayColumn9.FindSampleId)
+                                                    {
+                                                        <td class="alert-success">@item.TrayColumn9.Sample <br /> @item.TrayColumn9.Aliquot</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@item.TrayColumn9.Sample <br /> @item.TrayColumn9.Aliquot</td>
+                                                    }
+
+                                                    @if (item.TrayColumn10.FindSampleId)
+                                                    {
+                                                        <td class="alert-success">@item.TrayColumn10.Sample <br /> @item.TrayColumn10.Aliquot</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@item.TrayColumn10.Sample <br /> @item.TrayColumn10.Aliquot</td>
+                                                    }
+
+                                                    @if (item.TrayColumn11.FindSampleId)
+                                                    {
+                                                        <td class="alert-success">@item.TrayColumn11.Sample <br /> @item.TrayColumn11.Aliquot</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@item.TrayColumn11.Sample <br /> @item.TrayColumn11.Aliquot</td>
+                                                    }
+
+                                                    @if (item.TrayColumn12.FindSampleId)
+                                                    {
+                                                        <td class="alert-success">@item.TrayColumn12.Sample <br /> @item.TrayColumn12.Aliquot</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@item.TrayColumn12.Sample <br /> @item.TrayColumn12.Aliquot</td>
+                                                    }
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+                <input name="FreezerId" type="hidden" />
+                <input name="DrawerId" type="hidden" />
+                <input name="DrawerSlotId" type="hidden" />
+            }
+            @*else
+                {
+                    <div class="alert alert-warning" role="alert" style="margin-top: 7px">
+                        No scan found for existing session/tray. <br />
+                        Please scan tray and refresh page.
+                    </div>
+                }*@
+        </div>
+
+    </div>
+
+    <div class="form-inline clearfix">
+        <div style="margin-top: 3px;">
+
+            @if (Model.SearchResults != null)
+            {
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>Tabular Results</h4>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-body">
+                                <table class="table table-bordered table-hover table-striped text-center">
+                                    <thead class="text-center">
+                                        <tr class="small text-center">
+                                            <th class="text-center">Tray</th>
+                                            <th class="text-center">Sample</th>
+                                            <th class="text-center">Aliquot</th>
+                                            <th class="text-center">Patient</th>
+                                            <th class="text-center">Log Date</th>
+                                            <th class="text-center">Tray Location</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var trayRow in Model.TrayMapData.OrderByDescending(tm => tm.LogDate))
+                                        {
+                                            <tr class="small text-center">
+
+                                                <td>@trayRow.TrayDescription</td>
+                                                <td>@trayRow.SampleId</td>
+                                                <td>@trayRow.AliquotId</td>
+                                                <td>@trayRow.PatientName</td>
+                                                <td>@trayRow.LogDate.ToShortDateString()</td>
+                                                <td>@trayRow.TrayLocation</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input name="FreezerId" type="hidden" />
+                <input name="DrawerId" type="hidden" />
+                <input name="DrawerSlotId" type="hidden" />
+            }
+            @*else
+                {
+                    <div class="alert alert-warning" role="alert" style="margin-top: 7px">
+                        No scan found for existing session/tray. <br />
+                        Please scan tray and refresh page.
+                    </div>
+                }*@
+        </div>
+
+    </div>
+
+
+</form>

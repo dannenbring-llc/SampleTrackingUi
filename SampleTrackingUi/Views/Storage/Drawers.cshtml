@@ -1,0 +1,39 @@
+﻿@using  SampleTrackingUi.ViewModels.StorageViewModels;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
+@model DrawerViewModel;
+@*@await Html.PartialAsync("_SessionPartial", Model)*@
+
+<form id="#formMain" method="get">
+    <div>
+        <a href="~/">Freezers</a>
+    </div>
+    <div class="form-inline clearfix">
+        <div class="row h2" style="border-top: 5px">
+            @if (Model.Drawers != null)
+            {
+                @foreach (var drawer in Model.Freezer.Drawers)
+                {
+                     <div class="col-lg-1">
+                         @if (drawer.PercentFull < 50)
+						 {
+                             <a href="~/Storage/DrawerSlots/@drawer.FreezerId/@drawer.Id" class="btn btn-success btn-lg text-center" style="width: 100%" role="button">@drawer.Description<br/> @decimal.Round(Convert.ToDecimal(drawer.PercentFull), 0)%</a>
+						 }
+						 else if (drawer.PercentFull >= 50 && drawer.PercentFull < 75)
+						 {
+                             <a href="~/Storage/DrawerSlots/@drawer.FreezerId/@drawer.Id" class="btn btn-warning btn-lg text-center" style="width: 100%" role="button">@drawer.Description<br/> @decimal.Round(Convert.ToDecimal(drawer.PercentFull), 0)%</a>
+						 }
+						 else
+						 {
+                             <a href="~/Storage/DrawerSlots/@drawer.FreezerId/@drawer.Id" class="btn btn-danger btn-lg text-center" style="width: 100%" role="button">@drawer.Description<br/> @decimal.Round(Convert.ToDecimal(drawer.PercentFull), 0)%</a>
+						 }
+                     </div>
+
+                 }
+
+            }
+        </div>
+
+    </div>
+</form>

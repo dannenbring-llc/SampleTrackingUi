@@ -1,0 +1,137 @@
+﻿@using  SampleTrackingUi.ViewModels.Trays;
+@model MoveTrayViewModel;
+
+
+@await Html.PartialAsync("_SessionPartial", Model)
+
+
+<h2>Move Trays</h2>
+
+<ol class="breadcrumb">
+	<li class="active"><a>Select Tray</a></li>
+	<li>Select Sample</li>
+	<li>Select Sub Type</li>
+	<li>Assign Aliquots</li>
+	<li>Validate</li>
+</ol>
+
+<form class="form-inline">
+	@{
+		if (Model.Session.SessionId == 0)
+		{
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Scan Tray</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<label class="control-label">Tray: </label>
+						@Html.TextBoxFor(m => m.Tray.Description, new { id = "trayName", type = "text", @class = "form-control input-sm", autofocus="" })
+						<button type="submit" name="CheckTray" value="CheckTray" class="btn btn-primary">Check Tray</button>
+						@if (Model.ErrorMessage != null)
+						{
+
+							<label style="color: red">
+								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+								@Model.ErrorMessage
+							</label>
+						}
+
+					</div>
+				</div>
+			</div>
+
+			if (Model.TrayExists)
+			{
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<a data-toggle="collapse" href="#collapseAssignLocation" class="panel-title">Current Tray Location</a>
+					</div>
+					<div id="collapseAssignLocation" class="panel-collapse collapse in">
+						<div class="panel-body">
+							<div class="form-group">
+								<label class="control-label">Freezer: </label>
+								@Html.TextBoxFor(m => m.CurrentTrayLocation.FreezerId, new { id = "freezerId", type = "text", @class = "form-control input-sm", @readonly = "true" })
+								<label class="control-label">Drawer: </label>
+								@Html.TextBoxFor(m => m.CurrentTrayLocation.DrawerDescription, new { id = "drawerDescription", type = "text", @class = "form-control input-sm", @readonly = "true" })
+								<label class="control-label">Slot: </label>
+								@Html.TextBoxFor(m => m.CurrentTrayLocation.DrawerSlot, new { id = "drawerSlot", type = "text", @class = "form-control input-sm", @readonly = "true" })
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<a data-toggle="collapse" href="#collapseAssignLocation" class="panel-title">New Tray Location</a>
+					</div>
+					<div id="collapseAssignLocation" class="panel-collapse collapse in">
+						<div class="panel-body">
+							<div class="form-group">
+								<div class="form-group">
+									<label class="control-label" style="border-right: 5px">Freezer: </label>
+									@{
+										@Html.DropDownListFor(m => m.FreezerId,
+			  new SelectList(Model.Freezers, "Id", "Description"),
+			  "--All--",
+			  htmlAttributes: new
+			  {
+				  @class = "form-control input-sm",
+				  @onchange = "FillDrawerByFreezerId()",
+				  @id = "Freezer"
+			  }
+			  )
+									}
+								</div>
+
+								<div class="form-group" style="margin-left: 10px">
+									<label class="control-label">Drawer: </label>
+									@{
+										@Html.DropDownListFor(m => m.DrawerId,
+			  new SelectList(Model.Drawers, "Id", "Description"),
+			  "--All--",
+			  htmlAttributes: new
+			  {
+				  @class = "form-control input-sm",
+				  @id = "Drawers",
+				  @onchange = @"FillDrawerSlotsByDrawerId()"
+			  }
+			  )
+									}
+								</div>
+
+								<div class="form-group" style="margin-left: 10px">
+									<label class="control-label" style="border-right: 10px">Drawer Slot: </label>
+									@{
+										@Html.DropDownListFor(m => m.DrawerSlotId,
+			  new SelectList(Model.DrawerSlots, "Id", "Slot"),
+			  "--All--",
+			  htmlAttributes: new
+			  {
+				  @class = "form-control input-sm",
+				  @id = "DrawerSlots",
+				  @onchange = "this.form.submit();"
+			  }
+			  )
+									}
+								</div>
+							</div>
+							<div class="form-group" style="margin-left: 10px">
+								<button type="submit" name="SaveTrayRelocation" value="true" class="btn btn-primary">Save</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			}
+		}
+		else
+		{
+			<div class="alert alert-warning" role="alert" style="margin-top: 7px">
+				You have an open session.<br />
+				To move trays you must first @Html.ActionLink("close", "index", "Scans") your open session.
+			</div>
+
+										}
+	}
+</form>

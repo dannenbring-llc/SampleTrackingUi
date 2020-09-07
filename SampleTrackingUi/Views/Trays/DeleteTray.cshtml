@@ -1,0 +1,104 @@
+﻿@model SampleTrackingUi.ViewModels.Trays.DeleteTrayViewModel;
+
+
+@await Html.PartialAsync("_SessionPartial", Model)
+
+
+<h2>Delete Trays</h2>
+
+@if (Model.TrayExists)
+{
+	<ol class="breadcrumb">
+		<li>
+			<a>Select Tray</a>
+		</li>
+		<li class="active">Review Samples to be Deleted</li>
+		<li>Delete</li>
+	</ol>
+}
+else
+{
+	<ol class="breadcrumb">
+		<li class="active">
+			<a>Select Tray</a>
+		</li>
+		<li class="active"> Review Samples to be Deleted</li>
+		<li>Delete</li>
+	</ol>
+}
+
+<form class="form-inline">
+	@{
+		if (Model.Session.SessionId == 0)
+		{
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Scan Tray</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<label class="control-label">Tray: </label>
+						@Html.TextBoxFor(m => m.Tray.Description, new { id = "trayName", type = "text", @class = "form-control input-sm", autofocus="" })
+						<button type="submit" name="CheckTray" value="CheckTray" class="btn btn-primary">Check Tray</button>
+						@if (Model.ErrorMessage != null)
+						{
+							<label style="color: red">
+								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+								@Model.ErrorMessage
+							</label>
+						}
+
+					</div>
+				</div>
+			</div>
+
+			if (Model.TrayExists)
+			{
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<a data-toggle="collapse" href="#collapseAssignLocation" class="panel-title">Aliquots to be Deleted</a>
+					</div>
+					<div id="collapseAssignLocation" class="panel-collapse collapse in">
+						<div class="panel-body">
+							<table class="table table-bordered table-hover table-striped">
+								<thead>
+								<tr class="small">
+									<th>Sample Id</th>
+									<th>Patient Name</th>
+									<th>Patient Id</th>
+									<th>Sample Date</th>
+									<th>Log Date</th>
+									<th>Tray Location</th>
+								</tr>
+								</thead>
+
+								@foreach (var tray in Model.TrayData)
+								{
+									<tr class="small" scope="row">
+										<td>@tray.SampleId</td>
+										<td>@tray.PatientName</td>
+										<td>@tray.PatientId</td>
+										<td>@tray.SampleDate</td>
+										<td>@tray.LogDate</td>
+										<td>@tray.TrayLocation</td>
+									</tr>
+								}
+							</table>
+							<div class="form-group" style="margin-left: 10px">
+								<button type="submit" name="DeleteTray" value="true" class="btn btn-primary">Delete Tray</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			}
+		}
+		else
+		{
+			<div class="alert alert-warning" role="alert" style="margin-top: 7px">
+				You have an open session.<br/>
+				To move trays you must first @Html.ActionLink("close", "index", "Scans") your open session.
+			</div>
+		}
+	}
+</form>

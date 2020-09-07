@@ -1,0 +1,35 @@
+﻿@using  SampleTrackingUi.ViewModels.Samples;
+@model SampleAliquotViewModel;
+
+@{
+    ViewData["Title"] = "SampleAliquotView";
+}
+
+@await Html.PartialAsync("_SessionPartial", Model)
+
+
+<h2>Add Samples</h2>
+
+<ol class="breadcrumb">
+    <li class="active"><a>Select Tray</a></li>
+    <li>Select Sample</li>
+    <li>Select Sub Type</li>
+    <li>Assign Aliquots</li>
+    <li>Validate</li>
+</ol>
+
+<form class="form-inline">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Scan Tray</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group PostBackOnChange">
+                <label class="control-label">Destination Tray: </label>
+                @Html.TextBoxFor(m => m.Tray.Description, new { id = "trayName", type = "text", @class = "form-control input-sm", autofocus="" })
+                <button type="submit" name="CheckTray" value="CheckTray" class="btn btn-primary">Check Tray</button>
+            </div>
+        </div>
+    </div>
+</form>

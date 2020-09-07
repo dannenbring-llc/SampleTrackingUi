@@ -1,0 +1,61 @@
+﻿@using SampleTrackingUi.ViewModels.Administration;
+
+@model SessionsViewModel;
+
+@{
+	ViewData["Title"] = "Sessions";
+}
+
+<form id="formMain" method="post">
+	<div>
+		<div class="page-header">
+			<h1>@Model.PageTitle</h1>
+		</div>
+		<div class="form-inline clearfix">
+			<div style="margin-top: 3px;">
+				<table class="data table table-bordered table-hover table-striped" id="myTable">
+					<thead>
+						<tr class="small">
+							<th>&nbsp;</th>
+							<th>User ID</th>
+							<th>Name</th>
+							<th>SessionId</th>
+							<th>Session Created</th>
+						</tr>
+					</thead>
+					<tbody>
+						@{
+							int rowIndex = 0;
+
+							foreach (var item in Model.Sessions)
+							{
+												<tr class="data-row small">
+													<td width="5%" style="text-align:center; width:5%">
+														<div style="width: 100px;">
+															<a href="@Url.Action("DeleteSession", "Administration", new {item.SessionId, item.UserId})"
+															   class="glyphicon glyphicon-remove"
+															   style="margin-right:12px"
+															   onclick="return confirm('Are you sure you want to delete the session?')"
+															   title="Delete"
+															   data-delete="1"></a>
+														</div>
+													</td>
+													<td>@item.UserId</td>
+													<td>@item.UserName</td>
+													<td>@item.SessionId</td>
+													<td>@item.CreateDate</td>
+
+												</tr>
+
+								rowIndex++;
+							}
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div>
+		<!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
+	</div>
+</form>

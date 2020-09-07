@@ -1,0 +1,362 @@
+﻿@model SampleTrackingUi.ViewModels.Scans.ScanTrayViewModel;
+
+@await Html.PartialAsync("_SessionPartial", Model)
+
+<form id="#formMain" method="get">
+	<div class="form-inline clearfix">
+        <div style="margin-top: 3px;">
+
+            @if (Model.ScanData.TrayId != 0)
+            {
+                <h2>Tray: @Model.Session.TrayCode</h2>
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapseScan">Scan</a>
+                            </h4>
+                        </div>
+                        <div id="collapseScan" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <table class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                        <tr class="small">
+                                            <th>Scan Id</th>
+                                            <th>Tray Id</th>
+                                            <th>Tray Code</th>
+                                            <th>Tray Description</th>
+                                            <th>Create Date</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr class="small" scope="row">
+                                            <td>@Model.ScanData.ScanId</td>
+                                            <td>@Model.ScanData.TrayId</td>
+                                            <td>@Model.ScanData.TrayCode</td>
+                                            <td>@Model.ScanData.TrayTypeDescription</td>
+                                            <td>@Model.ScanData.CreateDateTime</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                @*            <div class="panel panel-collapse"><h3>Scan:</h3></div>*@
+
+
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapseTrayMap">Tray Map</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTrayMap" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <table class="data table table-bordered table-hover table-striped text-center">
+                                    <thead class="text-center">
+                                        <tr class="small text-center">
+                                            <th class="text-center">Row</th>
+                                            <th class="text-center">1</th>
+                                            <th class="text-center">2</th>
+                                            <th class="text-center">3</th>
+                                            <th class="text-center">4</th>
+                                            <th class="text-center">5</th>
+                                            <th class="text-center">6</th>
+                                            <th class="text-center">7</th>
+                                            <th class="text-center">8</th>
+                                            <th class="text-center">9</th>
+                                            <th class="text-center">10</th>
+                                            <th class="text-center">11</th>
+                                            <th class="text-center">12</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @{
+                                            foreach (var item in Model.TrayScanSerum)
+                                            {
+                                                <tr class="data-row small text-center">
+                                                    <td>@item.RowName</td>
+                                                    @if (item.TrayColumn1.IsUnknownAliquot)
+                                                    {
+                                                        <td class="alert-danger">Unknown<br /> @item.TrayColumn1.UnknownAliquotId</td>
+                                                    }
+                                                    else if (item.TrayColumn1.IsRelocatedAliquot)
+                                                    {
+                                                        <td class="alert-warning">Relocated<br /> @item.TrayColumn1.RelocatedAliquotId</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.TrayColumn1.Sample <br /> @item.TrayColumn1.Aliquot
+                                                        </td>
+                                                    }
+
+                                                    @if (item.TrayColumn2.IsUnknownAliquot)
+                                                    {
+                                                        <td class="alert-danger">Unknown<br /> @item.TrayColumn2.UnknownAliquotId</td>
+                                                    }
+                                                    else if (item.TrayColumn2.IsRelocatedAliquot)
+                                                    {
+                                                        <td class="alert-warning">Relocated<br /> @item.TrayColumn2.RelocatedAliquotId</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.TrayColumn2.Sample <br /> @item.TrayColumn2.Aliquot
+                                                        </td>
+                                                    }
+
+                                                    @if (item.TrayColumn3.IsUnknownAliquot)
+                                                    {
+                                                        <td class="alert-danger">Unknown<br /> @item.TrayColumn3.UnknownAliquotId</td>
+                                                    }
+                                                    else if (item.TrayColumn3.IsRelocatedAliquot)
+                                                    {
+                                                        <td class="alert-warning">Relocated<br /> @item.TrayColumn3.RelocatedAliquotId</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.TrayColumn3.Sample <br /> @item.TrayColumn3.Aliquot
+                                                        </td>
+                                                    }
+
+                                                    @if (item.TrayColumn4.IsUnknownAliquot)
+                                                    {
+                                                        <td class="alert-danger">Unknown<br /> @item.TrayColumn4.UnknownAliquotId</td>
+                                                    }
+                                                    else if (item.TrayColumn4.IsRelocatedAliquot)
+                                                    {
+                                                        <td class="alert-warning">Relocated<br /> @item.TrayColumn4.RelocatedAliquotId</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.TrayColumn4.Sample <br /> @item.TrayColumn4.Aliquot
+                                                        </td>
+                                                    }
+
+                                                    @if (item.TrayColumn5.IsUnknownAliquot)
+                                                    {
+                                                        <td class="alert-danger">Unknown<br /> @item.TrayColumn5.UnknownAliquotId</td>
+                                                    }
+                                                    else if (item.TrayColumn5.IsRelocatedAliquot)
+                                                    {
+                                                        <td class="alert-warning">Relocated<br /> @item.TrayColumn5.RelocatedAliquotId</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.TrayColumn5.Sample <br /> @item.TrayColumn5.Aliquot
+                                                        </td>
+                                                    }
+
+                                                    @if (item.TrayColumn6.IsUnknownAliquot)
+                                                    {
+                                                        <td class="alert-danger">Unknown<br /> @item.TrayColumn6.UnknownAliquotId</td>
+                                                    }
+                                                    else if (item.TrayColumn6.IsRelocatedAliquot)
+                                                    {
+                                                        <td class="alert-warning">Relocated<br /> @item.TrayColumn6.RelocatedAliquotId</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.TrayColumn6.Sample <br /> @item.TrayColumn6.Aliquot
+                                                        </td>
+                                                    }
+
+                                                    @if (item.TrayColumn7.IsUnknownAliquot)
+                                                    {
+                                                        <td class="alert-danger">Unknown<br /> @item.TrayColumn7.UnknownAliquotId</td>
+                                                    }
+                                                    else if (item.TrayColumn7.IsRelocatedAliquot)
+                                                    {
+                                                        <td class="alert-warning">Relocated<br /> @item.TrayColumn7.RelocatedAliquotId</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.TrayColumn7.Sample <br /> @item.TrayColumn7.Aliquot
+                                                        </td>
+                                                    }
+
+                                                    @if (item.TrayColumn8.IsUnknownAliquot)
+                                                    {
+                                                        <td class="alert-danger">Unknown<br /> @item.TrayColumn8.UnknownAliquotId</td>
+                                                    }
+                                                    else if (item.TrayColumn8.IsRelocatedAliquot)
+                                                    {
+                                                        <td class="alert-warning">Relocated<br /> @item.TrayColumn8.RelocatedAliquotId</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.TrayColumn8.Sample <br /> @item.TrayColumn8.Aliquot
+                                                        </td>
+                                                    }
+
+                                                    @if (item.TrayColumn9.IsUnknownAliquot)
+                                                    {
+                                                        <td class="alert-danger">Unknown<br /> @item.TrayColumn9.UnknownAliquotId</td>
+                                                    }
+                                                    else if (item.TrayColumn9.IsRelocatedAliquot)
+                                                    {
+                                                        <td class="alert-warning">Relocated<br /> @item.TrayColumn9.RelocatedAliquotId</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.TrayColumn9.Sample <br /> @item.TrayColumn9.Aliquot
+                                                        </td>
+                                                    }
+
+                                                    @if (item.TrayColumn10.IsUnknownAliquot)
+                                                    {
+                                                        <td class="alert-danger">Unknown<br /> @item.TrayColumn10.UnknownAliquotId</td>
+                                                    }
+                                                    else if (item.TrayColumn10.IsRelocatedAliquot)
+                                                    {
+                                                        <td class="alert-warning">Relocated<br /> @item.TrayColumn10.RelocatedAliquotId</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.TrayColumn10.Sample <br /> @item.TrayColumn10.Aliquot
+                                                        </td>
+                                                    }
+
+                                                    @if (item.TrayColumn11.IsUnknownAliquot)
+                                                    {
+                                                        <td class="alert-danger">Unknown<br /> @item.TrayColumn11.UnknownAliquotId</td>
+                                                    }
+                                                    else if (item.TrayColumn11.IsRelocatedAliquot)
+                                                    {
+                                                        <td class="alert-warning">Relocated<br /> @item.TrayColumn11.RelocatedAliquotId</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.TrayColumn11.Sample <br /> @item.TrayColumn11.Aliquot
+                                                        </td>
+                                                    }
+
+                                                    @if (item.TrayColumn12.IsUnknownAliquot)
+                                                    {
+                                                        <td class="alert-danger">Unknown<br /> @item.TrayColumn12.UnknownAliquotId</td>
+                                                    }
+                                                    else if (item.TrayColumn12.IsRelocatedAliquot)
+                                                    {
+                                                        <td class="alert-warning">Relocated<br /> @item.TrayColumn12.RelocatedAliquotId</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.TrayColumn12.Sample <br /> @item.TrayColumn12.Aliquot
+                                                        </td>
+                                                    }
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.TrayData != null)
+                {
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a data-toggle="collapse" href="#collapseAssignLocation" class="panel-title">Aliquots to be Deleted</a>
+                        </div>
+                        <div id="collapseAssignLocation" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <table class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                        <tr class="small">
+                                            <th>Sample Id</th>
+                                            <th>Patient Name</th>
+                                            <th>Patient Id</th>
+                                            <th>Sample Date</th>
+                                            <th>Log Date</th>
+                                            <th>Tray Location</th>
+                                        </tr>
+                                    </thead>
+
+                                    @foreach (var tray in Model.TrayData)
+                                    {
+                                        <tr class="small" scope="row">
+                                            <td>@tray.SampleId</td>
+                                            <td>@tray.PatientName</td>
+                                            <td>@tray.PatientId</td>
+                                            <td>@tray.SampleDate</td>
+                                            <td>@tray.LogDate</td>
+                                            <td>@tray.PositionText</td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+                <div id="closeSessionDiv" style="border-top: 15px; display: block;">
+                    <div class="form-group" style="margin-left: 10px">
+                        <button type="submit" name="CloseSession" value="true" class="btn btn-default">Cancel</button>
+                    </div>
+                    @if (Model.TrayData != null)
+                    {
+                        <div class="form-group" style="margin-left: 10px">
+                            <button type="submit" name="DeleteAliquots" value="true" class="btn btn-primary">Delete Aliquots</button>
+                        </div>
+                    }
+
+                </div>
+
+
+                <input name="FreezerId" type="hidden" />
+                <input name="DrawerId" type="hidden" />
+                <input name="DrawerSlotId" type="hidden" />
+            }
+            else if (Model.Session == null)
+            {
+                <div class="alert alert-warning" role="alert" style="margin-top: 7px">
+                    No open session exists.
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning" role="alert" style="margin-top: 7px">
+                    No scan found for existing session/tray. <br />
+                    Please scan tray and refresh page.
+                    <div id="countdown"></div>
+                    <meta http-equiv="refresh" content="16">
+                </div>
+            }
+        </div>
+
+	</div>
+</form>
+
+<script type="text/javascript">
+    var timeleft = 5;
+    var downloadTimer = setInterval(function () {
+        document.getElementById("countdown").innerHTML = timeleft + " seconds remaining until refresh";
+        timeleft -= 1;
+        if (timeleft <= 0) {
+            clearInterval(downloadTimer);
+            //        document.getElementById("countdown").innerHTML = "Finished"
+        }
+    }, 1000);
+</script>
