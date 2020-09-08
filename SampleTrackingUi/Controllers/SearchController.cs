@@ -109,14 +109,12 @@ namespace SampleTrackingUi.Controllers
         }
 
         [HttpGet]
-        [Route("StaleSamples")]
-        public async Task<IActionResult> PatientLookup(string kbNumber)
+        [Route("FindPatient/{kbNumber?}")]
+        public async Task<IActionResult> PatientLookup(PatientLookupViewModel vm)
         {
-            var vm = new PatientLookupViewModel();
-
-            if (kbNumber != null)
+            if (vm.Sample.KbNumber != null)
             {
-                vm.Sample = _mapper.Map<SampleApi>(await _igtSamplesApi.GetSampleAsync(kbNumber));
+                vm.Sample = _mapper.Map<SampleApi>(await _igtSamplesApi.GetSampleAsync(vm.Sample.KbNumber));
             }
             return View(vm);
         }

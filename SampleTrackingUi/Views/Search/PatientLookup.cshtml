@@ -1,5 +1,13 @@
 ﻿@using  SampleTrackingUi.ViewModels.SearchViewModels;
 @model PatientLookupViewModel;
+<style>
+    label {
+        width: 100px;
+    }
+    input {
+        width: 200px;
+    }
+</style>
 
 <form class="form-inline">
     <div class="panel panel-default">
@@ -11,11 +19,11 @@
                 @Html.LabelFor(m => Model.Sample.KbNumber, "KB:", new { @class = "control-label" })
                 @Html.TextBoxFor(m => m.Sample.KbNumber, new { id = "kbNumber", type = "text", @class = "form-control input-sm", autofocus = "" })
             </div>
-            <div class="form-group" style=" margin-left: 10px">
+@*            <div class="form-group" style=" margin-left: 10px">
                 @Html.LabelFor(m => Model.Sample.PatientName, "Patient Name:", new { @class = "control-label" })
                 @Html.TextBoxFor(m => m.Sample.PatientName, new { id = "patientName", type = "text", @class = "form-control input-sm" })
             </div>
-            <div class="form-group" style=" margin-left: 10px">
+*@            <div class="form-group" style=" margin-left: 10px">
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </div>
@@ -24,16 +32,41 @@
 
     <div class="form-inline clearfix">
         <div style="margin-top: 3px;">
+            <div class="panel-heading">
+            </div>
 
+            <div class="panel-body">
             @if (Model.Sample.PatientName != null)
             {
-            <panel>
-                <div>Patient Id: @Model.Sample.PatientId</div>
-                <div>Patient Name: @Model.Sample.PatientName</div>
-                <div>Sample: @Model.Sample.KbNumber</div>
-                <div>Log Date: @Model.Sample.LogDateTime</div>
-                <div>Sample Date: @Model.Sample.SampleDate</div>
-            </panel>
+                <div class="form-group">
+                    <label width="100px" class="control-label">Patient Id: </label>
+                    @Html.TextBoxFor(m => m.Sample.PatientId, new { id = "PatientId", type = "text", @class = "form-control input-sm", autofocus="", @readonly="readonly", @style="width: 150px;"})
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <label width="100px" class="control-label">Patient Name: </label>
+                    @Html.TextBoxFor(m => m.Sample.PatientName, new { id = "PatientName", type = "text", @class = "form-control input-sm", autofocus="", @readonly="readonly", @style="width: 150px;" })
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <label width="100px" class="control-label">Sample: </label>
+                    @Html.TextBoxFor(m => m.Sample.KbNumber, new { id = "kbNumber", type = "text", @class = "form-control input-sm", autofocus="", @readonly="readonly", @style="width: 150px;" })
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <label class="control-label">LogDate: </label>
+                    @Html.TextBoxFor(m => m.Sample.LogDateTime, new { id = "LogDateTime", type = "text", @class = "form-control input-sm", autofocus="", @readonly="readonly", @style="width: 150px;" })
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <label class="control-label">Sample Date: </label>
+                    @Html.TextBoxFor(m => m.Sample.SampleDateString, new { id = "SampleDateString", type = "text", @class = "form-control input-sm", autofocus="", @readonly="readonly", @style="width: 150px;" })
+                </div>
+
             }
             else
                 {
@@ -41,6 +74,7 @@
                         Patient/Sample not found. <br />
                    </div>
                 }
+           </div>
         </div>
 
     </div>
