@@ -233,6 +233,7 @@
                                             <th class="text-center">Sample</th>
                                             <th class="text-center">Aliquot</th>
                                             <th class="text-center">Patient</th>
+                                            <th class="text-center">Log Date</th>
                                             <th class="text-center">Tray Location</th>
                                         </tr>
                                     </thead>
@@ -246,7 +247,7 @@
                                                 <td>@trayRow.SampleId</td>
                                                 <td>@trayRow.AliquotId</td>
                                                 <td>@trayRow.PatientName</td>
-                                                <td>@trayRow.LogDate</td>
+                                                <td>@trayRow.LogDate.ToShortDateString()</td>
                                                 <td>@trayRow.TrayLocation</td>
                                             </tr>
                                         }

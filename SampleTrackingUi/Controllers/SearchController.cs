@@ -114,7 +114,9 @@ namespace SampleTrackingUi.Controllers
         {
             if (vm.Sample.KbNumber != null)
             {
-                vm.Sample = _mapper.Map<SampleApi>(await _igtSamplesApi.GetSampleAsync(vm.Sample.KbNumber));
+                var kbNumber = vm.Sample.KbNumber;
+                vm.Sample = null;
+                vm.Sample = _mapper.Map<SampleApi>(await _igtSamplesApi.GetSampleAsync(kbNumber));
             }
             return View(vm);
         }

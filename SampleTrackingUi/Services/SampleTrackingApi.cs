@@ -509,7 +509,7 @@ namespace SampleTrackingUi.Services
             query["logDate"] = logDate.ToShortDateString();
             var queryString = query.ToString();
 
-            HttpResponseMessage response = await client.GetAsync($"{_baseAddress}/Scans/TrayMapData/Stale/?{queryString}");
+            HttpResponseMessage response = await client.GetAsync($"{_baseAddress}/Scans/TrayMapData/?{queryString}");
             if (response.IsSuccessStatusCode)
             {
                 trayMapData = await response.Content.ReadAsAsync<List<TrayMapDataApi>>();
