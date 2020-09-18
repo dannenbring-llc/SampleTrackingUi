@@ -121,5 +121,16 @@ namespace SampleTrackingUi.Controllers
             return View(vm);
         }
 
+        [HttpGet]
+        [Route("AliquotLookup/{aliquotId?}")]
+        public async Task<IActionResult> AliquotLookup(AliquotLookupViewModel vm)
+        {
+            if (vm.AliquotInformation.AliquotId != null)
+            {
+                vm.AliquotInformation = _mapper.Map<AliquotInformationApi>(await _sampleTrackingApi.GetAliquotInformation(vm.AliquotInformation.AliquotId));
+            }
+            return View(vm);
+        }
+
     }
 }

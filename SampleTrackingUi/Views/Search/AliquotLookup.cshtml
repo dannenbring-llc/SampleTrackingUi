@@ -1,0 +1,88 @@
+﻿@using  SampleTrackingUi.ViewModels.SearchViewModels;
+@model AliquotLookupViewModel;
+
+@section Styles
+{
+    <style>
+        label {
+            width: 100px;
+        }
+
+        input.form-control.input-sm {
+            width: 160px;
+        }
+    </style>
+}
+
+<form class="form-inline">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group" style=" margin-left: 10px">
+                @Html.LabelFor(m => Model.AliquotInformation.AliquotId, "Aliquot:", new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.AliquotInformation.AliquotId, new { id = "aliquotId", type = "text", @class = "form-control input-sm", autofocus = "" })
+            </div>
+            @*            <div class="form-group" style=" margin-left: 10px">
+                    @Html.LabelFor(m => Model.Sample.PatientName, "Patient Name:", new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Sample.PatientName, new { id = "patientName", type = "text", @class = "form-control input-sm" })
+                </div>
+            *@            <div class="form-group" style=" margin-left: 10px">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-inline clearfix">
+        <div style="margin-top: 3px;">
+            <div class="panel-heading">
+            </div>
+
+            <div class="panel-body">
+                @if (Model.AliquotInformation.PatientName != null)
+                {
+                    <div class="form-group">
+                        <label class="control-label">Patient Id: </label>
+                        <input text="text" class="form-control input-sm" readonly="readonly" value="@Model.AliquotInformation.PatientId">
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <label class="control-label">Patient Name: </label>
+                        <input text="text" class="form-control input-sm" readonly="readonly" value="@Model.AliquotInformation.PatientName">
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <label class="control-label">Sample: </label>
+                        <input text="text" class="form-control input-sm" readonly="readonly" value="@Model.AliquotInformation.KbNumber">
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <label class="control-label">LogDate: </label>
+                        <input text="text" class="form-control input-sm" readonly="readonly" value="@Model.AliquotInformation.LogDate">
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <label class="control-label">Sample Date: </label>
+                        <input text="text" class="form-control input-sm" readonly="readonly" value="@Model.AliquotInformation.SampleDate">
+                    </div>
+
+                }
+                else
+                {
+                    <div class="alert alert-warning" role="alert" style="margin-top: 7px">
+                        Patient/Sample not found. <br />
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+
+
+</form>

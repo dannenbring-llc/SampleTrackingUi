@@ -60,11 +60,12 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 								<i class="glyphicon glyphicon-tasks" style="		padding-right: 8px"></i>Inventory<span class="caret"></span>
 							</a>
-							<ul class="dropdown-menu">
-								<li> <a asp-controller="Search" asp-action="FindByKb">Search</a></li>
-								<li> <a asp-controller="Search" asp-action="StaleSamples">Expired Samples</a></li>
-								<li> <a asp-controller="Search" asp-action="FindPatient">Patient Lookup</a></li>
-							</ul>
+                            <ul class="dropdown-menu">
+                                <li> <a asp-controller="Search" asp-action="FindByKb">Search</a></li>
+                                <li> <a asp-controller="Search" asp-action="StaleSamples">Expired Samples</a></li>
+                                <li> <a asp-controller="Search" asp-action="FindPatient">Patient Lookup</a></li>
+                                <li> <a asp-controller="Search" asp-action="AliquotLookup">Aliquot Lookup</a></li>
+                            </ul>
 						</li>
 
 						@*

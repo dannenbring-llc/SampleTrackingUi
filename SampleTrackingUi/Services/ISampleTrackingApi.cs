@@ -60,5 +60,6 @@ namespace SampleTrackingUi.Services
         Task<FreezerMapApi> GetFreezerMapAsync(int freezerId, string drawerDescription, string slot);
         Task<List<TrayMapDataApi>> GetTrayMapStaleSamplesAsync(DateTime logDate);
         Task<List<SearchResultBySampleApi>> GetSerumTrayMapStaleSamplesAsync(DateTime logDate);
+        Task<AliquotInformationApi> GetAliquotInformation(string aliquotId);
     }
 }

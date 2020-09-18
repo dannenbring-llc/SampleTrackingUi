@@ -597,5 +597,16 @@ namespace SampleTrackingUi.Services
             return freezerMap;
         }
 
+
+        public async Task<AliquotInformationApi> GetAliquotInformation(string aliquotId)
+        {
+            AliquotInformationApi aliquot = null;
+            HttpResponseMessage response = await client.GetAsync($"{_baseAddress}/Samples/AliquotInformation/{aliquotId}");
+            if (response.IsSuccessStatusCode)
+            {
+                aliquot = await response.Content.ReadAsAsync<AliquotInformationApi>();
+            }
+            return aliquot;
+        }
     }
 }
