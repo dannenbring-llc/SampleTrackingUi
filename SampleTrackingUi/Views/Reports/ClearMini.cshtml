@@ -1,0 +1,43 @@
+﻿@model SampleTrackingUi.ViewModels.Reports.ClearMiniViewModel
+
+@{
+    ViewBag.Title = "ClearMiniView";
+}
+
+<h2>Clear Mini Report</h2>
+
+<form class="form-inline" method="get">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Clear Mini Parameters</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="form-group PostBackOnChange" style="margin-left: 10px">
+                    <label style="width:100px">Log Number:</label>
+                    @Html.TextBoxFor(m => m.LogNumber, new { type = "text", @class = "form-control input-sm" })
+                </div>
+                <button type="button" class="btn btn-primary">Lookup</button>
+                @if (Model != null && Model.ShowReportButton)
+                {
+                <br />
+                <div class="form-group PostBackOnChange" style="margin-left: 10px">
+                    <label style="width:100px">Patient ID:</label>
+                    @Html.TextBoxFor(m => m.PatId, new { type = "text", @readonly = true, @class = "form-control input-sm readonly" })
+                </div>
+                <br />
+                <div class="form-group PostBackOnChange" style="margin-left: 10px">
+                    <label style="width:100px">Patient Name:</label>
+                    @Html.TextBoxFor(m => m.PatientName, new { type = "text", @readonly = true, @class = "form-control input-sm readonly" })
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @if (Model != null && Model.ShowReportButton)
+    {
+        <a href="http://igt-ws-local/IgtReports/Reports/ClearMini?patId=@Model.PatId&lognumber=@Model.LogNumber" target="_blank" class="btn btn-primary">Run Report</a>
+    }
+
+</form>

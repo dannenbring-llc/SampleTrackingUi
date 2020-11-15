@@ -41,7 +41,7 @@
             </div>
 
             <div class="panel-body">
-                @if (Model.AliquotInformation.PatientName != null)
+                @if (Model.AliquotInformation != null && Model.AliquotInformation.PatientName != null)
                 {
                     <div class="form-group">
                         <label class="control-label">Patient Id: </label>
@@ -76,7 +76,7 @@
                 else
                 {
                     <div class="alert alert-warning" role="alert" style="margin-top: 7px">
-                        Patient/Sample not found. <br />
+                        Aliquot not found. <br />
                     </div>
                 }
             </div>
