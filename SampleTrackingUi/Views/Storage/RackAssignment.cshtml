@@ -1,0 +1,62 @@
+﻿@model SampleTrackingUi.ViewModels.StorageViewModels.RackAssignmentViewModel
+
+@{
+    ViewBag.Title = "ClearMiniView";
+}
+
+<h2>Sample Rack Assignment</h2>
+
+<form class="form-inline" method="get">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Clear Mini Parameters</h3>
+        </div>
+        <div class="panel-body">
+            <select class="form-control input-sm" onchange="form.submit();"
+                    asp-for="RackId" asp-items="@(new SelectList(Model.Racks, "Id", "IdDescription"))">
+                <option>Please Select a Rack</option>
+            </select>
+            <br />
+            <br />
+            @if (Model.RackId != null)
+            {
+
+                @for (int i = 0; i < Model.SampleRackLocations.Count; i++)
+                {
+                    <div class="form-group">
+                        <div class="form-group PostBackOnChange" style="margin-left: 10px">
+                            <label style="width:100px">Log Number:</label>
+                            @if (i == Model.Racks.Count - 1)
+                            {
+                                @Html.TextBoxFor(m => m.SampleRackLocations[i].SampleId, new { type = "text", @class = "form-control input-sm", autofocus = "" });
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.SampleRackLocations[i].SampleId, new { type = "text", @class = "form-control input-sm" });
+                            }
+                        </div>
+                        @if (i == Model.SampleRackLocations.Count - 1)
+                        {
+                            <button type="button" class="btn btn-primary">Add</button>
+                        }
+
+                    </div>
+                    <br />
+                }
+
+            }
+
+        </div>
+    </div>
+
+    @if (Model != null && Model.ShowSaveButton && Model.RackId != null)
+    {
+        <br />
+        <br />
+        <input id="logNumbers" hidden="hidden" value="@string.Join(',', Model.SampleRackLocations.Select(p => p.SampleId))" />
+        <button type="submit" formmethod="post" class="btn btn-primary">Save</button>
+        <button asp-controller="Home" asp-action="Index" class="btn btn-warning">Cancel</button>
+    }
+</form>
+
+<br />

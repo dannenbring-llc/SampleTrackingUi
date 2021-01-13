@@ -65,6 +65,7 @@
                                 <li> <a asp-controller="Search" asp-action="StaleSamples">Expired Samples</a></li>
                                 <li> <a asp-controller="Search" asp-action="FindPatient">Patient Lookup</a></li>
                                 <li> <a asp-controller="Search" asp-action="AliquotLookup">Aliquot Lookup</a></li>
+                                <li> <a asp-controller="Storage" asp-action="RackAssignment">Assign Sample to Rack</a></li>
                             </ul>
 						</li>
 
@@ -90,7 +91,8 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-blackboard" style="		g-right: 8px"></i>Reports<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li> <a asp-controller="Home" asp-action="Index" target="_blank">Freezer Map</a></li>
-								<li> <a asp-controller="Reports" asp-action="ClearMini">Clear Mini</a></li>
+								@*<li> <a asp-controller="Reports" asp-action="ClearMini">Clear Mini</a></li>*@
+								<li> <a href="http://igt-ws-local/ClearMini/CrystalReportViewerFramework.application">Clear Mini</a></li>
 							</ul>
 						</li>
 

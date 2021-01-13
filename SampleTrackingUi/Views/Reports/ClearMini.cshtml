@@ -12,32 +12,99 @@
             <h3 class="panel-title">Clear Mini Parameters</h3>
         </div>
         <div class="panel-body">
+            @for (int i = 0; i < Model.Labels.Count; i++)
+            {
             <div class="form-group">
                 <div class="form-group PostBackOnChange" style="margin-left: 10px">
                     <label style="width:100px">Log Number:</label>
-                    @Html.TextBoxFor(m => m.LogNumber, new { type = "text", @class = "form-control input-sm" })
+                    @if (i == Model.Labels.Count -1)
+                    {
+                    @Html.TextBoxFor(m => m.Labels[i].LogNumber, new { type = "text", @class = "form-control input-sm", autofocus=""});
+                    }
+                    else
+                    {
+                    @Html.TextBoxFor(m => m.Labels[i].LogNumber, new { type = "text", @class = "form-control input-sm" });
+                    }
                 </div>
-                <button type="button" class="btn btn-primary">Lookup</button>
-                @if (Model != null && Model.ShowReportButton)
+                @if (i == Model.Labels.Count -1)
                 {
+                <button type="button" class="btn btn-primary">Lookup</button>
+                }
+
+                @if (Model != null && Model.Labels[i].LogNumber != null)
+                    {
                 <br />
                 <div class="form-group PostBackOnChange" style="margin-left: 10px">
                     <label style="width:100px">Patient ID:</label>
-                    @Html.TextBoxFor(m => m.PatId, new { type = "text", @readonly = true, @class = "form-control input-sm readonly" })
+                    @Html.TextBoxFor(m => m.Labels[i].PatId, new { type = "text", @readonly = true, @class = "form-control input-sm readonly" })
                 </div>
                 <br />
                 <div class="form-group PostBackOnChange" style="margin-left: 10px">
                     <label style="width:100px">Patient Name:</label>
-                    @Html.TextBoxFor(m => m.PatientName, new { type = "text", @readonly = true, @class = "form-control input-sm readonly" })
+                    @Html.TextBoxFor(m => m.Labels[i].PatientName, new { type = "text", @readonly = true, @class = "form-control input-sm readonly" })
                 </div>
-                }
+                    }
             </div>
+            <br />
+
+            }
+            @*@foreach (var label in Model.Labels)
+                {
+                    <div class="form-group">
+                        <div class="form-group PostBackOnChange" style="margin-left: 10px">
+                            <label style="width:100px">Log Number:</label>
+                            @Html.TextBoxFor(m => label.LogNumber, new { type = "text", @class = "form-control input-sm" })
+                        </div>
+                        <button type="button" class="btn btn-primary">Lookup</button>
+                        @if (Model != null && Model.ShowReportButton)
+                        {
+                            <br />
+                            <div class="form-group PostBackOnChange" style="margin-left: 10px">
+                                <label style="width:100px">Patient ID:</label>
+                                @Html.TextBoxFor(m => label.PatId, new { type = "text", @readonly = true, @class = "form-control input-sm readonly" })
+                            </div>
+                            <br />
+                            <div class="form-group PostBackOnChange" style="margin-left: 10px">
+                                <label style="width:100px">Patient Name:</label>
+                                @Html.TextBoxFor(m => label.PatientName, new { type = "text", @readonly = true, @class = "form-control input-sm readonly" })
+                            </div>
+                        }
+                    </div>
+                }*@
+
         </div>
     </div>
 
     @if (Model != null && Model.ShowReportButton)
     {
-        <a href="http://igt-ws-local/IgtReports/Reports/ClearMini?patId=@Model.PatId&lognumber=@Model.LogNumber" target="_blank" class="btn btn-primary">Run Report</a>
+    @*<label class="control-label">Printer:</label>
+        <select asp-for="PrinterName"
+                class="form-control"
+                asp-items="@(new SelectList(Model.Printers, "Name", "Description"))">
+        </select>
+        <br />
+        <br />*@
+    <label class="control-label">Copies:</label>
+    <input type="number" value="1" class="form-control" id="Copies">
+    <br />
+    <br />
+    <input id="logNumbers" hidden="hidden" value="@string.Join(',', Model.Labels.Select(p => p.LogNumber))" />
+    @*<button asp-controller="Reports" asp-action="ClearMiniPost" type="submit" formmethod="post" name="Save" value="Scan" class="btn btn-success">Print Label(s)</button>*@
+    @*<a href="http://igt-ws-local/IgtReports/Reports/ClearMini?logNumbers=@string.Join(',', Model.Labels.Select(p => p.LogNumber))" target="_blank" class="btn btn-primary">Run Report</a>*@
+    @*<a href="http://igt-ws-local/IgtReports/Reports/ClearMini?logNumbers=@string.Join(',', Model.Labels.Select(p => p.LogNumber))" target="_blank" class="btn btn-primary">Run Report</a>*@
+    @*<a href="http://localhost:44361/Reports/ClearMini?logNumbers=@string.Join(',', Model.Labels.Select(p => p.LogNumber))" target="_blank" class="btn btn-primary">Run Report</a>*@
+    @*<a href="http://igt-ws-local/ClearMini/CrystalReportViewerFramework.application?samples=@string.Join(',', Model.Labels.Select(p => p.LogNumber))" class="btn btn-primary">Print Report</a>*@
+    @*<a href="http://igt-ws-local/ClearMini/CrystalReportViewerFramework.application?samples=" />*@
     }
-
+    <button type="submit" formmethod="post" class="btn btn-primary">Clear Fields</button>
 </form>
+
+<br />
+<button onclick="getInputValue()" class="btn btn-primary">Print</button>
+
+
+@*<form class="form-inline" method="post">
+        <button type="submit" name="action" value="clear" class="btn btn-primary">Clear Fields</button>
+    </form>
+<button onclick="getInputValue()" class="btn btn-primary">Print</button>*@
+

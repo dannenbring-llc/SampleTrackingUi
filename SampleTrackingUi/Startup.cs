@@ -68,6 +68,7 @@ namespace SampleTrackingUi
                 );
             services.AddSingleton<ISampleTrackingApi, SampleTrackingApi>();
             services.AddSingleton<IIGTSamplesApi, IGTSamplesApi>();
+            services.AddScoped<IReportService, ReportService>();
             services.AddMvc();
             services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>());
         }

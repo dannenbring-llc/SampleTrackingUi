@@ -1,4 +1,5 @@
 ﻿using SampleTrackingUi.ApiModels.Administration;
+using SampleTrackingUi.ApiModels.Printers;
 using SampleTrackingUi.ApiModels.Samples;
 using SampleTrackingUi.ApiModels.Scans;
 using SampleTrackingUi.ApiModels.Sessions;
@@ -61,5 +62,8 @@ namespace SampleTrackingUi.Services
         Task<List<TrayMapDataApi>> GetTrayMapStaleSamplesAsync(DateTime logDate);
         Task<List<SearchResultBySampleApi>> GetSerumTrayMapStaleSamplesAsync(DateTime logDate);
         Task<AliquotInformationApi> GetAliquotInformation(string aliquotId);
+        Task<List<PrinterApi>> GetPrinters();
+        Task<List<RackApi>> GetRacks();
+        Task<TrayLocationApi> UpdateSampleRackAsync(string sample, string rack);
     }
 }

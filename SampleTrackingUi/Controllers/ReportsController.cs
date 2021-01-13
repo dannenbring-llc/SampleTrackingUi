@@ -2,16 +2,28 @@
 using SampleTrackingUi.Services;
 using SampleTrackingUi.ViewModels.Reports;
 using System.Threading.Tasks;
+using System.Linq;
+using SampleTrackingUi.ApiModels.Reports;
+using AutoMapper;
+using SampleTrackingUi.Entities.Printers;
+using System.Collections.Generic;
+using System;
 
 namespace SampleTrackingUi.Controllers
 {
     public class ReportsController : Controller
     {
         private readonly IIGTSamplesApi _igtSamplesApi;
+        private readonly IReportService _reportService;
+        private readonly ISampleTrackingApi _sampleTrackingApi;
+        private readonly IMapper _mapper;
 
-        public ReportsController(IIGTSamplesApi igtSamplesApi)
+        public ReportsController(IIGTSamplesApi igtSamplesApi, IReportService reportService, ISampleTrackingApi sampleTrackingApi, IMapper mapper)
         {
             _igtSamplesApi = igtSamplesApi;
+            _reportService = reportService;
+            _sampleTrackingApi = sampleTrackingApi;
+            _mapper = mapper;
         }
 
         public IActionResult TrayMap()
@@ -22,21 +34,50 @@ namespace SampleTrackingUi.Controllers
         [HttpGet("ClearMini")]
         public async Task<IActionResult> ClearMini(ClearMiniViewModel viewModel)
         {
-            if (viewModel.LogNumber != null)
+            if (viewModel.Labels != null)
             {
-                var sample = await _igtSamplesApi.GetSampleAsync(viewModel.LogNumber);
-                if (sample == null)
+
+                for (int i = 0; i < viewModel.Labels.Count; i++)
                 {
-                    viewModel.ShowReportButton = false;
-                    return View(viewModel);
+                    if (string.IsNullOrEmpty(viewModel.Labels[i].PatientName))
+                    {
+                        var sample = await _igtSamplesApi.GetSampleAsync(viewModel.Labels[i].LogNumber);
+                        if (sample == null)
+                        {
+                            viewModel.ShowReportButton = false;
+                            return View(viewModel);
+                        }
+                        viewModel.Labels[i].LogNumber = sample.KbNumber;
+                        viewModel.Labels[i].PatId = sample.PatientId;
+                        viewModel.Labels[i].PatientName = sample.PatientName;
+                        viewModel.ShowReportButton = true;
+                    }
                 }
-                viewModel.LogNumber = sample.KbNumber;
-                viewModel.PatId = sample.PatientId;
-                viewModel.PatientName = sample.PatientName;
-                viewModel.ShowReportButton = true;
+                if (viewModel.ShowReportButton)
+                {
+                    viewModel.Labels.Add(new Label());
+                }
+
+                try
+                {
+                    viewModel.Printers = await _sampleTrackingApi.GetPrinters();
+                }
+                catch (System.Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    throw;
+                }
+                
             }
 
             return View(viewModel);
         }
+
+        [HttpPost("ClearMini")]
+        public async Task<IActionResult> ClearMiniPost(ClearMiniViewModel viewModel)
+        {
+            return RedirectToAction("ClearMini", "Reports");
+        }
+
     }
 }

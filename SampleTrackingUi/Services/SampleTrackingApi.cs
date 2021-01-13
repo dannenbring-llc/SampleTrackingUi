@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using SampleTrackingUi.ApiModels.Administration;
+using SampleTrackingUi.ApiModels.Printers;
 using SampleTrackingUi.ApiModels.Samples;
 using SampleTrackingUi.ApiModels.Scans;
 using SampleTrackingUi.ApiModels.Sessions;
@@ -607,6 +608,41 @@ namespace SampleTrackingUi.Services
                 aliquot = await response.Content.ReadAsAsync<AliquotInformationApi>();
             }
             return aliquot;
+        }
+
+        public async Task<List<PrinterApi>> GetPrinters()
+        {
+            var printers = new List<PrinterApi>();
+            HttpResponseMessage response = await client.GetAsync($"{_baseAddress}/Printers");
+            if (response.IsSuccessStatusCode)
+            {
+                printers = await response.Content.ReadAsAsync<List<PrinterApi>>();
+
+            }
+            return printers;
+        }
+
+        public async Task<List<RackApi>> GetRacks()
+        {
+            var racks = new List<RackApi>();
+            HttpResponseMessage response = await client.GetAsync($"{_baseAddress}/Storage/Racks");
+            if (response.IsSuccessStatusCode)
+            {
+                racks = await response.Content.ReadAsAsync<List<RackApi>>();
+
+            }
+            return racks;
+        }
+
+        public async Task<TrayLocationApi> UpdateSampleRackAsync(string sample, string rack)
+        {
+            TrayLocationApi results = null;
+            HttpResponseMessage response = await client.PostAsJsonAsync($"{_baseAddress}/Storage/Rack/{sample}/{rack}", sample).ConfigureAwait(false);
+            if (response.IsSuccessStatusCode)
+            {
+                results = await response.Content.ReadAsAsync<TrayLocationApi>();
+            }
+            return results;
         }
     }
 }

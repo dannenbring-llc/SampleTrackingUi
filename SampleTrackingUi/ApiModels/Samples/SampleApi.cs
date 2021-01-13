@@ -15,5 +15,7 @@ namespace SampleTrackingUi.ApiModels.Samples
                 return SampleDate.ToShortDateString();
             }
         }
+        public string Rack { get; set; }
+        public string RackDescription { get; set; }
     }
 }

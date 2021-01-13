@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using SampleTrackingUi.ApiModels.Administration;
+using SampleTrackingUi.ApiModels.Printers;
 using SampleTrackingUi.ApiModels.Samples;
 using SampleTrackingUi.ApiModels.Scans;
 using SampleTrackingUi.ApiModels.Sessions;
 using SampleTrackingUi.ApiModels.Storage;
+using SampleTrackingUi.Entities.Printers;
+using SampleTrackingUi.Entities.Storage;
 using SampleTrackingUi.Models.Administration;
 using SampleTrackingUi.Models.Samples;
 using SampleTrackingUi.Models.Scans;
@@ -44,6 +47,9 @@ namespace SampleTrackingUi
             CreateMap<FreezerMapApi, FreezerMap>();
             CreateMap<TrayDataApi, TrayData>();
             CreateMap<TrayLocationApi, TrayLocation>();
+            CreateMap<PrinterApi, Printer>();
+            CreateMap<Printer, PrinterApi>();
+            CreateMap<RackApi, Rack>();
         }
     }
 }

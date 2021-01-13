@@ -65,12 +65,10 @@ function showScanPopup() {
     });
 }
 // Read a page's GET URL variables and return them as an associative array.
-function getUrlVars()
-{
+function getUrlVars() {
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
-    {
+    for (var i = 0; i < hashes.length; i++) {
         hash = hashes[i].split('=');
         vars.push(hash[0]);
         vars[hash[0]] = hash[1];
@@ -114,5 +112,18 @@ function showCloseSessionButton() {
             x.style.display = "none";
         }
     }
+}
 
+function getInputValue() {
+    //var printerName = document.getElementById("PrinterName");
+    var copies = document.getElementById("Copies");
+    var logNumbers = document.getElementById("logNumbers");
+    var address = "http://igt-ws-local/ClearMini/CrystalReportViewerFramework.application?samples=" + logNumbers.value
+        //+ "&printer=" + printerName.value
+        + "&copies=" + copies.value;
+
+    window.location.href = address;
+    //window.location.href = "http://igt-ws-local/SampleTracking";
+
+    //alert(printerName.value + " " + copies.value + " " + logNumbers.value);
 }

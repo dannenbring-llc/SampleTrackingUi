@@ -14,5 +14,6 @@ namespace SampleTrackingUi.ViewModels.SearchViewModels
         }
 
         public SampleApi Sample { get; set; }
+        public string Rack => string.IsNullOrEmpty(Sample.Rack)? "" : $"{Sample.Rack} - {Sample.RackDescription}";
     }
 }
