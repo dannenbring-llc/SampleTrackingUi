@@ -13,6 +13,7 @@ namespace SampleTrackingUi.Models.Administration
         public string Email { get; set; }
         public string EmailNormalized { get; set; }
         public char Status { get; set; }
+        public bool Active => Status == 'A' ? true : false;
         public string PasswordHash { get; set; }
         public int RoleId { get; set; }
         public string RoleName { get; set; }

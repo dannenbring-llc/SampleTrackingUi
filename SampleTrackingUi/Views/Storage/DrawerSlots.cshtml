@@ -17,42 +17,46 @@
             {
                 @foreach (var drawerSlot in Model.Drawer.DrawerSlots)
                 {
-                     <div class="col-lg-3">
-                         @if (drawerSlot.PercentFull < 50)
-                         {
-                             if (drawerSlot.Tray != null)
-                             {
-                                 <a href="~/Search/FindByKb?TrayDescription=@drawerSlot.Tray.Description" class="btn btn-success btn-lg text-center" style="width: 100%; text-align: center" role="button">@drawerSlot.Slot - Full: @Decimal.Round(Convert.ToDecimal(drawerSlot.PercentFull), 2)% <br/> Tray: @drawerSlot.Tray.Description</a>
-                             }
-                             else
-                             {
-                                 <a href="" class="btn btn-success btn-lg text-center" style="width: 100%; text-align: center" role="button">@drawerSlot.Slot - Full: @Decimal.Round(Convert.ToDecimal(drawerSlot.PercentFull), 2)% <br/> No Tray</a>
-                             }
+            <div class="col-lg-3">
+                @if (drawerSlot.PercentFull == 0)
+                {
+                    <a href="" class="btn btn-default btn-lg text-center" style="width: 100%; text-align: center" role="button">@drawerSlot.Slot - Full: @Decimal.Round(Convert.ToDecimal(drawerSlot.PercentFull), 2)% <br /> No Tray</a>
+                }
+                else if (drawerSlot.PercentFull < 50)
+                {
+                    if (drawerSlot.Tray != null)
+                    {
+                        <a href="~/Search/FindByKb?TrayDescription=@drawerSlot.Tray.Description" class="btn btn-success btn-lg text-center" style="width: 100%; text-align: center" role="button">@drawerSlot.Slot - Full: @Decimal.Round(Convert.ToDecimal(drawerSlot.PercentFull), 2)% <br /> Tray: @drawerSlot.Tray.Description</a>
+                    }
+                    else
+                    {
+                        <a href="" class="btn btn-success btn-lg text-center" style="width: 100%; text-align: center" role="button">@drawerSlot.Slot - Full: @Decimal.Round(Convert.ToDecimal(drawerSlot.PercentFull), 2)% <br /> No Tray</a>
+                    }
 
-                         }
-                         else if (drawerSlot.PercentFull >= 50 && drawerSlot.PercentFull < 75)
-                         {
-                             if (drawerSlot.Tray != null)
-                             {
-                                 <a href="~/Search/FindByKb?TrayDescription=@drawerSlot.Tray.Description" class="btn btn-warning btn-lg text-center" style="width: 100%; text-align: center" role="button">@drawerSlot.Slot - Full: @Decimal.Round(Convert.ToDecimal(drawerSlot.PercentFull), 2)% <br/> Tray: @drawerSlot.Tray.Description</a>
-                             }
-                             else
-                             {
-                                 <a href="" class="btn btn-warning btn-lg text-center" style="width: 100%; text-align: center" role="button">@drawerSlot.Slot - Full: @Decimal.Round(Convert.ToDecimal(drawerSlot.PercentFull), 2)% <br/> No Tray</a>
-                             }
-                         }
-                         else
-                         {
-                             if (drawerSlot.Tray != null)
-                             {
-                                 <a href="~/Search/FindByKb?TrayDescription=@drawerSlot.Tray.Description" class="btn btn-danger btn-lg text-center" style="width: 100%; text-align: center" role="button">@drawerSlot.Slot - Full: @Decimal.Round(Convert.ToDecimal(drawerSlot.PercentFull), 2)% <br/> Tray: @drawerSlot.Tray.Description</a>
-                             }
-                             else
-                             {
-                                 <a href="" class="btn btn-danger btn-lg text-center" style="width: 100%; text-align: center" role="button">@drawerSlot.Slot - Full: @Decimal.Round(Convert.ToDecimal(drawerSlot.PercentFull), 2)% <br/> No Tray</a>
-                             }
-                         }
-                     </div>
+                }
+                else if (drawerSlot.PercentFull >= 50 && drawerSlot.PercentFull < 75)
+                {
+                    if (drawerSlot.Tray != null)
+                    {
+                        <a href="~/Search/FindByKb?TrayDescription=@drawerSlot.Tray.Description" class="btn btn-warning btn-lg text-center" style="width: 100%; text-align: center" role="button">@drawerSlot.Slot - Full: @Decimal.Round(Convert.ToDecimal(drawerSlot.PercentFull), 2)% <br /> Tray: @drawerSlot.Tray.Description</a>
+                    }
+                    else
+                    {
+                        <a href="" class="btn btn-warning btn-lg text-center" style="width: 100%; text-align: center" role="button">@drawerSlot.Slot - Full: @Decimal.Round(Convert.ToDecimal(drawerSlot.PercentFull), 2)% <br /> No Tray</a>
+                    }
+                }
+                else
+                {
+                    if (drawerSlot.Tray != null)
+                    {
+                        <a href="~/Search/FindByKb?TrayDescription=@drawerSlot.Tray.Description" class="btn btn-danger btn-lg text-center" style="width: 100%; text-align: center" role="button">@drawerSlot.Slot - Full: @Decimal.Round(Convert.ToDecimal(drawerSlot.PercentFull), 2)% <br /> Tray: @drawerSlot.Tray.Description</a>
+                    }
+                    else
+                    {
+                        <a href="" class="btn btn-danger btn-lg text-center" style="width: 100%; text-align: center" role="button">@drawerSlot.Slot - Full: @Decimal.Round(Convert.ToDecimal(drawerSlot.PercentFull), 2)% <br /> No Tray</a>
+                    }
+                }
+            </div>
                  }
             }
         </div>

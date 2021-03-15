@@ -11,12 +11,14 @@ namespace SampleTrackingUi.Services
 {
     public class ReportService : IReportService
     {
-        private readonly HttpClient client = new HttpClient();
+        private readonly HttpClient client;
         private string _baseAddress;
 
         public ReportService(IConfiguration configuration)
         {
             _baseAddress = configuration.GetSection("Api").GetSection("ReportsBaseAddress").Value;
+            client = new HttpClient();
+            client.DefaultRequestHeaders.Add("x-api-key", configuration.GetSection("x-api-key").Value);
         }
 
         public async Task PrintClearMini(IEnumerable<ClearMiniParameter> parameters)

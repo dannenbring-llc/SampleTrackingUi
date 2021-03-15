@@ -8,19 +8,20 @@ namespace SampleTrackingUi.Services
 {
     public class IGTSamplesApi : IIGTSamplesApi
     {
-        private static readonly HttpClient Client = new HttpClient();
+        private readonly HttpClient client;
         private static string _baseAddress;
 
         public IGTSamplesApi(IConfiguration configuration)
         {
             _baseAddress = configuration.GetSection("Api").GetSection("BaseAddress").Value;
-
+            client = new HttpClient();
+            client.DefaultRequestHeaders.Add("x-api-key", configuration.GetSection("x-api-key").Value);
         }
 
         public async Task<List<SubTypeApi>> GetSubTypesAsync()
         {
             List<SubTypeApi> subTypes = null;
-            var response = await Client.GetAsync($"{_baseAddress}/Samples/GetSubTypes");
+            var response = await client.GetAsync($"{_baseAddress}/Samples/GetSubTypes");
             if (response.IsSuccessStatusCode)
             {
                 subTypes = await response.Content.ReadAsAsync<List<SubTypeApi>>();
@@ -31,7 +32,7 @@ namespace SampleTrackingUi.Services
         public async Task<SampleApi> GetSampleAsync(string kbNumber)
         {
             SampleApi sample = null;
-            var response = await Client.GetAsync($"{_baseAddress}/GetSample/{kbNumber}");
+            var response = await client.GetAsync($"{_baseAddress}/GetSample/{kbNumber}");
             if (response.IsSuccessStatusCode)
             {
                 sample = await response.Content.ReadAsAsync<SampleApi>();
@@ -41,7 +42,7 @@ namespace SampleTrackingUi.Services
         public async Task<SampleApi> GetPatientsAsync(string prefix)
         {
             SampleApi sample = null;
-            var response = await Client.GetAsync($"{_baseAddress}/IGT/GetPatients/{prefix}");
+            var response = await client.GetAsync($"{_baseAddress}/IGT/GetPatients/{prefix}");
             if (response.IsSuccessStatusCode)
             {
                 sample = await response.Content.ReadAsAsync<SampleApi>();

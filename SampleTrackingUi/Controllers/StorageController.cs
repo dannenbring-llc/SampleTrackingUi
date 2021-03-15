@@ -82,7 +82,7 @@ namespace SampleTrackingUi.Controllers
                         vm.ShowSaveButton= true;
                     }
                 }
-                if (vm.ShowSaveButton)
+                if (vm.SampleRackLocations.Where(sr => string.IsNullOrEmpty(sr.SampleId)).Count() == 0)
                 {
                     vm.SampleRackLocations.Add(new SampleRackLocationApi());
                 }

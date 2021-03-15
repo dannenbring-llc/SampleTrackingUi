@@ -17,12 +17,14 @@ namespace SampleTrackingUi.Services
 {
     public class SampleTrackingApi : ISampleTrackingApi
     {
-        private readonly HttpClient client = new HttpClient();
+        private readonly HttpClient client;
         private readonly string _baseAddress;
 
         public SampleTrackingApi(IConfiguration configuration)
         {
             _baseAddress = configuration.GetSection("Api").GetSection("BaseAddress").Value;
+            client = new HttpClient();
+            client.DefaultRequestHeaders.Add("x-api-key", configuration.GetSection("x-api-key").Value);
         }
 
         public async Task<List<UserApi>> GetUsersAsync()

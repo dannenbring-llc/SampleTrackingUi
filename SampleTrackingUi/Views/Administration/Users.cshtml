@@ -24,7 +24,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Status</th>
+                            <th>Active</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,7 +51,7 @@
                                     <td>@item.Id</td>
                                     <td>@item.Name</td>
                                     <td>@item.Email</td>
-                                    <td>@item.Status</td>
+                                    <td><input type="checkbox" readonly="readonly" @item.Status></td>
                                 </tr>
 
                                 rowIndex++;

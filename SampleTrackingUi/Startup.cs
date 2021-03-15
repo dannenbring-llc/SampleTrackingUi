@@ -93,7 +93,7 @@ namespace SampleTrackingUi
 
             app.UseAuthentication();
 
-            app.UseCookiePolicy();
+            //app.UseCookiePolicy();
 
             app.UseAuthorization();
 
